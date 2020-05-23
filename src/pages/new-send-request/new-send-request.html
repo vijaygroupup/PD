@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end *ngIf="showRegister">
+      <button ion-button icon-only (click)='goToHome()'>
+        <ion-icon name="log-in"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)='goToHelp()'>
+        <ion-icon name="help"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>PickDrop</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+   <ion-card text-wrap *ngIf="hideForScan">
+    <img src="assets/imgs/profile.jpg">
+    <ion-card-content>
+      <ion-item *ngIf="hideFav">
+        <ion-row>
+          <ion-col>
+          <button ion-button color="pdblue"  text-center block (click)='goToFav()' icon-end> <ion-icon name="ios-star-outline"> Saved List</ion-icon></button>
+        </ion-col>
+      <ion-col>
+          <button ion-button color="pdblue"  text-center block (click)='goToFav()' icon-end> <ion-icon name="ios-qr-scanner"> Scan QR</ion-icon></button>
+        </ion-col>
+        </ion-row>
+      </ion-item>
+    <ion-item *ngIf="!vendorFlag">
+      <ion-searchbar class="card-title"  [(ngModel)]="input" (ionInput)="updateFromSearchResults()" placeholder="Package Pickup location"></ion-searchbar>
+      <ion-list>
+        <ion-item *ngFor="let item of autocompleteFromItems" tappable (click)="selectFromSearchResult(item)">
+          {{ description }}
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <ion-item>
+      <ion-searchbar class="card-title" [(ngModel)]="input" (ionInput)="updateFromSearchResults()" placeholder="Package Drop location"></ion-searchbar>
+      <ion-list>
+        <ion-item *ngFor="let item of autocompleteToItems" tappable (click)="selectToSearchResult(item)">
+          {{ description }}
+        </ion-item>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <span item-start class="basetext">Rs.{{cost}}/kg</span>
+      <span item-start class="basetext">({{distance}})</span>
+      <button ion-button icon-end clear item-end color="dark" [disabled]="continue" (click)='submitSenderRequest()'>
+        <ion-icon name="send" class="basetext" > Continue</ion-icon>      
+      </button>
+    </ion-item>
+     </ion-card-content>
+  </ion-card>
+</ion-content>
+
+

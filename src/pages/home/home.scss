@@ -1,0 +1,47 @@
+page-home {
+    .card-header{
+        font-size: x-large
+    }
+    .toolbar-background {
+        background: #fff;
+        border-color: transparent;
+      }
+    .slide-zoom {
+        height: 100%;
+      }
+    
+      .slide-title {
+        margin-top: 2.8rem;
+      }
+    
+      .slide-image {
+        max-height: 100%;
+        max-width: 100%;
+        margin: 0 0;
+      }
+      .danger{
+          color: red;
+      }
+      b {
+        font-weight: 500;
+      }
+    
+      p {
+        padding: 0 40px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #60646B;
+    
+        b {
+          color: #000000;
+        }
+      }
+
+      .sendText{
+        text-align: center;
+    //color: #228937;
+    color:#256438;
+    font-variant-east-asian: full-width;
+    font-weight: bolder;
+      }
+}

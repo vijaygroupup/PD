@@ -1,0 +1,118 @@
+<ion-header>
+
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Track Package Status</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-footer>
+  <ion-toolbar>
+    <p class="appName">PickDrop</p>
+    <ion-buttons end>
+      <button ion-button icon-right color="primary" (click)="goToDash()">
+        <ion-icon name="ios-help-circle-outline"></ion-icon>
+      </button>
+      <button ion-button icon-right color="primary" (click)="createSenderRequest()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+<ion-content>
+  <ion-refresher (ionRefresh)="ionViewCanEnter($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="ionViewCanEnter()" color="secondary">
+      <ion-icon name="refresh-circle"></ion-icon>
+    </button>
+  </ion-fab>
+  <div>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <div *ngFor="let feed of senderFeeds ; let i = index">
+      <ion-list text-wrap>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/imgs/senderavatar.png">
+          </ion-avatar>
+          <button icon-left *ngIf="!hideMe[i]" ion-button color="dark" outline text-center (click)="showHideDetails(i)">
+            <ion-icon name="open"></ion-icon> Details
+          </button>
+          <button icon-left *ngIf="hideMe[i]" ion-button color="dark" outline text-center (click)="showHideDetails(i)">
+            <ion-icon name="close"></ion-icon> Details
+          </button>
+          <button *ngIf="feed.packageStatus=='ASSIGNED' || feed.packageStatus=='PICKEDUP'" ion-button color="dark"
+            outline text-center (click)="cancelRequest(feed.requestId,feed.packageStatus,i)"
+            [disabled]="cancelClicked[i]">Cancel</button>
+        </ion-item>
+
+        <ion-item-options *ngIf="feed.packageStatus=='ASSIGNED'">
+          <button ion-button color="danger" icon-start (click)="cancelRequest(feed.requestId,feed.packageStatus)">
+            <ion-icon name="close-circle"></ion-icon>
+            Cancel
+          </button>
+          <button ion-button color="Secondary" icon-start (click)="dialNumber(feed.recieverContact)">
+            <ion-icon name="ios-call-outline"></ion-icon>
+            Call
+          </button>
+        </ion-item-options>
+        <div *ngIf="hideMe[i]">
+          <ion-item>
+            <ion-label>Pickup Address</ion-label>
+            <ion-label>{{feed.packagePickupAddress}}</ion-label>
+            <ion-icon name="ios-mail-outline" item-end></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Reciever Address</ion-label>
+            <ion-label>{{feed.recieverAddress}}</ion-label>
+            <ion-icon name="ios-mail-outline" item-end></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Reciever Contact</ion-label>
+            <ion-label> {{feed.recieverContact}}</ion-label>
+            <ion-icon name="ios-call-outline" color="secondary" item-end (click)="dialNumber(feed.recieverContact)">
+            </ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Deliverer Contact</ion-label>
+            <ion-label> {{feed.assignedToPhoneNumber}}</ion-label>
+            <ion-icon name="ios-call-outline" color="secondary" item-end
+              (click)="dialNumber(feed.assignedToPhoneNumber)"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Deliverer Name</ion-label>
+            <ion-label> {{feed.deliverFirstName}}</ion-label>
+            <ion-icon name="ios-walk-outline" item-end></ion-icon>
+          </ion-item>
+          <ion-item *ngIf="feed.packageStatus=='DELIVERED' || feed.packageStatus=='RETURNED'">
+            <ion-label>Delivered date</ion-label>
+            <ion-label> {{feed.deliveredDate | date:'medium'}}</ion-label>
+            <ion-icon name="ios-calendar-outline" item-end></ion-icon>
+          </ion-item>
+          <ion-item *ngIf="feed.packageStatus=='DELIVERED' || feed.packageStatus=='RETURNED'">
+            <ion-label>Pickedup date</ion-label>
+            <ion-label> {{feed.pickedUpDate | date:'medium'}}</ion-label>
+            <ion-icon name="ios-calendar-outline" item-end></ion-icon>
+          </ion-item>
+          <ion-item *ngIf="feed.packageStatus=='DELIVERED' || feed.packageStatus=='RETURNED'">
+            <ion-label>Tracking Id</ion-label>
+            <ion-label> {{feed.requestId}}</ion-label>
+            <ion-icon name="ios-bookmark-outline" item-end></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Parcel Type</ion-label>
+            <ion-label> {{feed.parcelType}}</ion-label>
+            <ion-icon name="ios-information-circle-outline" item-end></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Package Status</ion-label>
+            <ion-label> {{feed.packageStatus}}</ion-label>
+            <ion-icon name="ios-information-circle-outline" item-end></ion-icon>
+          </ion-item>
+        </div>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

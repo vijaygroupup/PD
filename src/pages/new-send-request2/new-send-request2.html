@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Reciever Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Reciever Name <a class="mandatory">*</a></ion-label>
+        <ion-input [(ngModel)]="recieverName" ></ion-input>
+        </ion-item>
+        <ion-item *ngFor="let contact of allContacts" tappable (tap)="selectFromContactList(contact)">
+            {{ contact.displayName}}
+          </ion-item>
+      <ion-item>
+        <ion-label stacked>Reciever Phone Number <a class="mandatory">*</a></ion-label>
+        <ion-input [(ngModel)]="recieverPhone"  type="number"
+           placeholder="Enter phonenumber of reciever"></ion-input>
+      </ion-item>
+       <ion-item>
+        <ion-label stacked>Reciever House #/Street Name <a class="mandatory">*</a></ion-label>
+        <ion-input [(ngModel)]="recieverHouseNo" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Reciever Address</ion-label>
+        <ion-textarea [(ngModel)]="recieverAddress" disabled></ion-textarea>
+      </ion-item>
+       <ion-item>
+        <ion-label stacked>Weight in KG <a class="mandatory">*</a></ion-label>
+        <ion-input [(ngModel)]="weight" type="number" (ionChange)="calculateAmt()"></ion-input>
+      </ion-item>
+        <ion-item>
+        <ion-label stacked>Parcel Type <a class="mandatory">*</a></ion-label>
+        <ion-select [(ngModel)]="parcelType">
+          <ion-option value="document">Document/Books</ion-option>
+          <ion-option value="electronics">Electronics</ion-option>
+          <ion-option value="food">Food/Medicine/Vegetables</ion-option>
+          <ion-option value="metal">Metal</ion-option>
+          <ion-option value="dress">Dress</ion-option>
+          <ion-option value="others">Others</ion-option>
+        </ion-select>
+      </ion-item>
+        <ion-item>
+        <ion-label stacked>Pickup House #/Street Name <a class="mandatory">*</a></ion-label>
+        <ion-input [(ngModel)]="pickUpHouseNo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Pickup Address</ion-label>
+        <ion-textarea [(ngModel)]="pickupAddress" disabled></ion-textarea>
+      </ion-item>
+       <ion-item>
+        <ion-label stacked>Amount Rs. {{amount}}</ion-label>
+      </ion-item>
+      <div text-center>
+        <button ion-button color="dark" outline text-center block  (click)='postSenderRequest()'>Submit</button>
+        </div>
+    </ion-list>
+</ion-content>

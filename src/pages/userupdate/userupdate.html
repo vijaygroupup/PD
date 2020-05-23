@@ -1,0 +1,59 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-footer>
+  <ion-toolbar>
+    <p class="appName">Picks & Drops</p>
+    <ion-buttons end>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-content padding>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>I am a online shop/Vendor/Buisness House</ion-label>
+        <ion-toggle color="royal" [checked]="vendorFlag" [(ngModel)]="vendorFlag"
+          ></ion-toggle>
+      </ion-item>
+      <ion-item *ngIf="vendorFlag">
+        <ion-label stacked>Shop Name/Business Name <a class="mandatory">*</a></ion-label>
+        <ion-input type="text" id="vendorName" [disabled]="vendorNameDisabled"
+          [(ngModel)]="vendorName"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!vendorFlag">
+        <ion-label stacked>FirstName <a class="mandatory">*</a></ion-label>
+        <ion-input type="text" [disabled]="firstNameDisabled" [(ngModel)]="firstName">
+        </ion-input>
+      </ion-item>
+      <ion-item *ngIf="!vendorFlag">
+        <ion-label stacked>LastName <a class="mandatory">*</a></ion-label>
+        <ion-input type="text"  [disabled]="lastNameDisabled" [(ngModel)]="lastName">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Address <a class="mandatory">*</a></ion-label>
+        <ion-input type="text" disabled [(ngModel)]="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>House/Street Name </ion-label>
+        <ion-input type="text"  [(ngModel)]="houseNo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Email <a class="mandatory">*</a></ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <button ion-button color="dark" outline text-center block (click)='goToDash()'>Cancel</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="dark" outline text-center block (click)='userDetailsUpdate()'
+            [disabled]="updateDetails">Update Details</button>
+        </ion-col>
+      </ion-row>
+      </ion-list>
+</ion-content>

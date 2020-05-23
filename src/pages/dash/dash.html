@@ -1,0 +1,151 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end *ngIf="!loggedIn">
+      <button ion-button icon-only (click)='goToHome()'>
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>About  & Contact Us</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-footer>
+    <ion-toolbar>
+
+<p *ngIf="!supportNumber">+91-735-841-0025</p>
+<p *ngIf="supportNumber">{{supportNumber}}</p>
+<ion-buttons end>pickdrop24x7@gmail.com</ion-buttons>
+ 
+</ion-toolbar>
+  </ion-footer>
+
+<ion-content text-wrap >
+  <ion-card *ngIf="location">
+      <ion-card-content>
+    <a style="font-weight: bolder;font-size: large;color: #2d7f04;" >Currently we operate only in {{location}}</a>
+    </ion-card-content>
+  </ion-card>
+  <ion-row>
+      <ion-col>
+          <ion-card>
+            <ion-card-content>
+              <ion-card-title>
+                How it works
+                </ion-card-title>
+                <a style="font-weight: bolder;font-size: large;">As a User</a>
+              <p style="padding-bottom:10px ">
+               <a style="font-weight: bolder">$</a> Send any packages from anywhere to anyone at anytime
+              </p>
+              <p style="padding-bottom:10px ">
+                <a style="font-weight: bolder">$</a> Packages can be packed food, documents, flowers,Medicines,dresses,groceries and etc.,
+                </p>
+                <p style="padding-bottom:10px ">
+                  <a style="font-weight: bolder">$</a> Click on "Send Your Package" to deliver any items.Provide the OTP to the transporter available inside your "Track Package Status".
+                   </p>
+                   <p style="padding-bottom:10px ">
+                    <a style="font-weight: bolder">$</a> Pay the amount displayed in "Track Package Status" to the transporter during pick up.
+                     </p>
+                     <p style="padding-bottom:10px ">
+                      <a style="font-weight: bolder">$</a> Your package will be delivered within 2 hours
+                       </p>
+                       <a style="font-weight: bolder;font-size: large;">As a Transporter</a>
+                       <p style="padding-bottom:10px ">
+                        <a style="font-weight: bolder">$</a> Anyone can register as a transporter and deliver the packages on your way
+                         </p>
+                         <p style="padding-bottom:10px ">
+                          <a style="font-weight: bolder">$</a> Enable "I want to be a transporter" in settings
+                           </p>
+                           <p style="padding-bottom:10px ">
+                            <a style="font-weight: bolder">$</a> PickDrop team verifies your identity and promote you as Transporter. Thats it.
+                             </p>
+                             <p style="padding-bottom:10px ">
+                              <a style="font-weight: bolder">$</a> Packages will be assigned to you. Check "Picks & Drops" and start delivering to earn unlimitedly
+                               </p>
+                               <p style="padding-bottom:10px ">
+                                <a style="font-weight: bolder">$</a> You can change "Available" in settings to change your availability
+                                 </p>
+            </ion-card-content>
+          </ion-card>
+          </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+        <ion-card >
+            <img src="assets/imgs/sendpack.png"/>
+            <ion-card-content>
+              <ion-card-title>
+                  Send Your Package
+                </ion-card-title>
+              <p>Customer should use this menu to send a package</p>
+            </ion-card-content>
+          </ion-card>
+    
+    </ion-col>
+    </ion-row>
+    <ion-row>
+        
+      <ion-col>
+        <ion-card >
+          <img src="assets/imgs/dashdeliver1.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              Picks & Drops
+              </ion-card-title>
+            <p>
+              Transporter should use this menu to check the assigned items for delivery.
+            </p>
+          </ion-card-content>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+        <ion-row>
+      <ion-col> 
+          <ion-card>
+              <img src="assets/imgs/dashreciever.png"/>
+              <ion-card-content>
+                <ion-card-title>
+                    Track Package Status
+                  </ion-card-title>
+                <p>Customer should use this menu to know the items "On the way" and "waiting for pickup". 
+                 
+                </p>
+              </ion-card-content>
+            </ion-card>
+         
+          
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-card>
+              <img src="assets/imgs/dashsender.png"/>
+              <ion-card-content>
+                <ion-card-title>
+                    Search Package Status
+                  </ion-card-title>
+                <p>Customer should use this menu to check the status of your sent items more than 30 days</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          </ion-row>
+          <ion-row>
+      <ion-col>
+
+          <ion-card >
+              <img src="assets/imgs/history2.jpg"/>
+              <ion-card-content>
+                <ion-card-title>
+                    Earnings and Spendings
+                  </ion-card-title>
+                <p>Your daily earnings, total earnings and total spent</p>
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+      </ion-row>
+</ion-content>

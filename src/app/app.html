@@ -1,0 +1,41 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar class="user-profile">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4 padding-top>
+            <a class="user-avatar">
+              <img src="assets/imgs/profileImg.png">
+              <!--img [src]="_domSanitizer.bypassSecurityTrustUrl(profilePhotoId)" onerror="if (this.src != 'assets/imgs/humanalt.jpg')this.src='assets/imgs/humanalt.jpg';"-->
+            </a>
+          </ion-col>
+          <ion-col col-8>
+            <h2 class="no-margin bold text-white">
+              Vijay J
+            </h2>
+            <span color="light">Customer , Count: 10 </span>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding class="other-data">
+          <ion-col no-padding class="column">
+            <button ion-button icon-left small full color="light" menuClose (click)="goToProfile()">
+              <ion-icon name="contact"></ion-icon>
+              Edit Profile
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color="dark">
+    <ion-list class="user-list">
+      <button ion-item menuClose class="text-1x" *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon item-left [name]="p.icon" color="black"></ion-icon>
+        <span ion-text color="primary">{{p.title}}</span>
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
